@@ -26,6 +26,7 @@ def station_scraper():
     stations = {
         "Costco1": pull_secret("COSTCO1"),
         "Costco2": pull_secret("COSTCO2")
+        "Exxon1": pull_secret("EXXON1")
     }
     for name, station in stations.items():
         logger.debug(f"Scraping station {station}")
