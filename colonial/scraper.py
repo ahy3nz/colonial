@@ -25,7 +25,7 @@ def station_scraper():
     results = []
     stations = {
         "Costco1": pull_secret("COSTCO1"),
-        "Costco2": pull_secret("COSTCO2")
+        "Costco2": pull_secret("COSTCO2"),
         "Exxon1": pull_secret("EXXON1")
     }
     for name, station in stations.items():
