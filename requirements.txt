@@ -1,0 +1,9 @@
+altair==4.1.0
+fsspec==2021.4.0
+numpy==1.20.2
+pandas==1.2.4
+requests==2.25.1
+s3fs==2021.4.0
+streamlit==0.81.1
+.
+
