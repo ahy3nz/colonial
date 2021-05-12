@@ -1,0 +1,14 @@
+name: colonial
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - altair
+  - numpy
+  - pandas
+  - pip
+  - requests
+  - s3fs
+  - pip:
+    - streamlit
+    - -e .
