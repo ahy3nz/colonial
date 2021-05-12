@@ -1,0 +1,35 @@
+from pathlib import Path
+import os
+import pandas as pd
+import s3fs
+import streamlit as st
+
+GASBUDDY_BUCKET = 'gasbuddybucket'
+
+
+def pull_secret(key):
+    try:
+        return st.secrets[key]
+    except FileNotFoundError:
+        return os.getenv(key, None)
+
+
+def get_s3filesystem():
+    s3 = s3fs.S3FileSystem(
+        key=pull_secret("GASBUDDY_ACCESS_KEY"),
+        secret=pull_secret("GASBUDDY_SECRET_KEY")
+    )
+
+    return s3
+
+
+def upload_s3(df, filename):
+    s3 = get_s3filesystem()
+    pathname = f'{GASBUDDY_BUCKET}/{filename}'
+    if s3.exists(pathname):
+        include_header = False
+    else:
+        include_header = True
+
+    with s3.open(pathname, 'a') as f:
+        df.to_csv(f, index=False, header=include_header)
