@@ -5,8 +5,8 @@ import streamlit as st
 import altair as alt
 import pandas as pd
 
-from colonial.data import get_s3filesystem, GASBUDDY_BUCKET
-from colonial.scraper import state_scraper, us_scraper, station_scraper
+from data import get_s3filesystem, GASBUDDY_BUCKET
+from scraper import state_scraper, us_scraper, station_scraper
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(

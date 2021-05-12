@@ -7,7 +7,7 @@ import pytz
 import requests
 import pandas as pd
 
-from colonial.data import upload_s3, pull_secret
+from data import upload_s3, pull_secret
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(
