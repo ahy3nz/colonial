@@ -50,7 +50,7 @@ def station_scraper():
             })
 
     new_df = pd.DataFrame(results)
-    upload_s3(new_df, 'station_data.csv')
+    upload_s3(new_df, 'station_data.parquet')
 
     #filename = Path("staticdata/station_data.csv")
     #if filename.exists():
@@ -80,7 +80,7 @@ def state_scraper():
                 "Timestamp": timestamp
             })
     new_df = pd.DataFrame(results)
-    upload_s3(new_df, 'state_data.csv')
+    upload_s3(new_df, 'state_data.parquet')
 
     #filename = Path("staticdata/state_data.csv")
     #if filename.exists():
@@ -108,7 +108,7 @@ def us_scraper():
             "Timestamp": timestamp
         })
         new_df = pd.DataFrame(results)
-        upload_s3(new_df, 'us_data.csv')
+        upload_s3(new_df, 'us_data.parquet')
 
     #filename = Path("staticdata/us_data.csv")
     #if filename.exists():

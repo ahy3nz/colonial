@@ -27,9 +27,10 @@ def upload_s3(df, filename):
     s3 = get_s3filesystem()
     pathname = f'{GASBUDDY_BUCKET}/{filename}'
     if s3.exists(pathname):
-        include_header = False
-    else:
-        include_header = True
+        with open(pathname, 'rb') as f:
+            existing_df = pd.read_parquet(f)
+        df = pd.concat([existing_df,  df])
 
-    with s3.open(pathname, 'a') as f:
-        df.to_csv(f, index=False, header=include_header)
+    with s3.open(pathname, 'wb') as f:
+        df.drop_duplicates().to_parquet(f, index=False)
+

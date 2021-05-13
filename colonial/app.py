@@ -51,12 +51,12 @@ def main():
 
 def load_data():
     logger.debug("Loading data from S3")
-    csvfiles = ['station_data.csv', 'state_data.csv', 'us_data.csv']
+    files = ['station_data.parquet', 'state_data.parquet', 'us_data.parquet']
     s3 = get_s3filesystem()
     all_dfs = []
-    for csv in csvfiles:
-        with s3.open(f'{GASBUDDY_BUCKET}/{csv}', 'r') as f:
-            all_dfs.append(pd.read_csv(f))
+    for filename in files:
+        with s3.open(f'{GASBUDDY_BUCKET}/{filename}', 'rb') as f:
+            all_dfs.append(pd.read_parquet(f))
     df = pd.concat(all_dfs)
     df['Timestamp'] = pd.to_datetime(df['Timestamp'])
 
